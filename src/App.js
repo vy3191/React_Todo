@@ -51,12 +51,19 @@ class App extends React.Component {
           items: [newItem, ...this.state.items]
       });
   }
+  
+  clearPurchasedItem = () => {
+    //  event.preventDefault();
+     this.setState({
+        items: this.state.items.filter( item => !item.completed)
+     })
+  }
   render() {
     console.log(this.state.items)
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addItem={this.addItem} />
+        <TodoForm addItem={this.addItem} clearPurchasedItem={this.clearPurchasedItem}/>
         <TodoList items={this.state.items} toggleItem={this.toggleItem} />        
       </div>
     );

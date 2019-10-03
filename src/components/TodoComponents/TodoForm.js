@@ -20,6 +20,10 @@ export default class TodoForm extends Component {
         userName:''
      })
   }
+  clearItems = (event) => {
+     event.preventDefault();
+     this.props.clearPurchasedItem();
+  }
   render() {
     return (
       <div>
@@ -29,7 +33,7 @@ export default class TodoForm extends Component {
                  value={this.state.userName}
                  onChange={this.handleInput} />
           <button type='submit'>Add</button>   
-          <button>Clear All</button>    
+          <button onClick={this.clearItems}>Clear All</button>    
         </form>
       </div>
     )
