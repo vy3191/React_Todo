@@ -1,4 +1,6 @@
 import React from 'react';
+import TodoList from './components/TodoComponents/TodoList';
+import TodoForm from './components/TodoComponents/TodoForm';
 import data from './Data';
 
 class App extends React.Component {
@@ -28,8 +30,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addItem={this.addItem} />
-        <TodoList />
-        <TodoList />
+        <TodoList items={this.state.items} />        
       </div>
     );
   }
