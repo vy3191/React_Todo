@@ -24,7 +24,7 @@ class App extends React.Component {
    toggleItem = (event,itemId) => {
      event.preventDefault();  
     this.setState({
-      items: this.state.items.map( (item,index) => {
+      items: this.state.items.map( (item) => {
         if(item.id == itemId) {
            return {
               ...item, completed:!item.completed
@@ -47,9 +47,11 @@ class App extends React.Component {
          completed: false
       }
       console.log(newItem)
+      if(itemName) {
       this.setState({
           items: [newItem, ...this.state.items]
       });
+    }
   }
   
   clearPurchasedItem = () => {
