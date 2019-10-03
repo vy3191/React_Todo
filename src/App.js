@@ -10,27 +10,54 @@ class App extends React.Component {
   constructor() {
      super();
      this.state = {
-        items: data
+        items: [
+          {
+            name: "Joshua",
+            id: Date.now(),
+            completed: false
+          }
+         
+        ]  
      }
   }
 
+   toggleItem = (event,itemId) => {
+     event.preventDefault();  
+    this.setState({
+      items: this.state.items.map( (item,index) => {
+        if(item.id == itemId) {
+           return {
+              ...item, completed:!item.completed
+           }
+        } else {
+           return item;
+        }
+      })
+    })
+    console.log('line 44', itemId)
+
+  }
+
   addItem = (event,itemName) => {
-      const newId = this.state.items.length+1;
+    event.preventDefault();
+    console.log('working in App.js');
       const newItem = {
-         id: newId,
-         item: itemName,
+         id: Date.now(),
+         name: itemName,
          completed: false
       }
+      console.log(newItem)
       this.setState({
           items: [newItem, ...this.state.items]
-      })
+      });
   }
   render() {
+    console.log(this.state.items)
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addItem={this.addItem} />
-        <TodoList items={this.state.items} />        
+        <TodoList items={this.state.items} toggleItem={this.toggleItem} />        
       </div>
     );
   }
